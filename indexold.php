@@ -9,7 +9,7 @@ if(isset($_GET['logout'])){
     file_put_contents("log.html", $logout_message, FILE_APPEND | LOCK_EX);
      
     session_destroy();
-    header("Location: index.php"); //Redirect the user
+    header("Location: indexold.php"); //Redirect the user
 }
  
 if(isset($_POST['enter'])){
@@ -25,7 +25,7 @@ function loginForm(){
     echo
     '<div id="loginform">
     <p>Please enter your name to continue!</p>
-    <form action="index.php" method="post">
+    <form action="indexold.php" method="post">
       <label for="name">Name &mdash;</label>
       <input type="text" name="name" id="name" />
       <input type="submit" name="enter" id="enter" value="Enter" />
@@ -71,7 +71,7 @@ function loginForm(){
                 <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
             </form>
         </div>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script -->
         <script type="text/javascript">
             // jQuery Document
             $(document).ready(function () {
