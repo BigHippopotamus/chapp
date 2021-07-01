@@ -68,7 +68,7 @@
 
       function preventSubmit(event) {
         event.preventDefault();
-        return false();
+        return false;
       }
     </script>
   </body>
