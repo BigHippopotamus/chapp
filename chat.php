@@ -48,14 +48,15 @@
         });
           
         function sendMessage() {
-          console.log("HHHH")
           let msg = $("#input-text").val();
-          $.post("post.php", 
-          {
-            message:  msg
-          });
+          if (msg !== "") {
+            $.post("post.php", 
+            {
+              message:  msg
+            });
 
-          $("#input-text").val("");
+            $("#input-text").val("");
+          }
         }
 
         function updateChat() {
