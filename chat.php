@@ -8,6 +8,10 @@
   }
 
   $_SESSION['user'] = $uname;
+
+  if (!file_exists("log.html")) {
+    fopen("log.html", "a");
+  }
 ?>
 
 <!DOCTYPE html>
