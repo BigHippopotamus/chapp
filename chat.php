@@ -33,7 +33,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
-        $("#submit-button").click(sendMessage());
+        $("#submit-button").click(function() {
+          sendMessage();
+        });
           
         $("#input-form").keypress((event) => {
           if (event.which === 13) {
@@ -42,6 +44,7 @@
         });
           
         function sendMessage() {
+          console.log("HHHH")
           let msg = $("#input-text").val();
           $.post("post.php", 
           {
