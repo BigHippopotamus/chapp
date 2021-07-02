@@ -37,7 +37,7 @@
         <form method="POST", action="">
             enter chat name
             <input type="text" name="room_name" ><br>
-            <input type="checkbox"  name="private_room">private chat<br>            
+            <label> <input type="checkbox"  name="private_room"> private chat</label><br>            
             <input type="submit" name="submit" value="create new chat"><br>
             <h1> Join existing chat</h1>
         </form>
