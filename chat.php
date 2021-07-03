@@ -10,7 +10,7 @@
   $_SESSION['user'] = $uname;
 
   if (!file_exists("log.html")) {
-    fopen("log.html", "a");
+    fopen("log.html", "a+");
   }
 ?>
 
@@ -22,8 +22,8 @@
   </head>
 
   <body>
-    <div id="chatpane">
-      <div id="chat-content">
+    <div id="chatpane" style="width: 60vw; height: 90vh; margin: auto">
+      <div id="chat-content" style="width: 50%; height: 70%; margin: auto; overflow-y: scroll; border-style: solid">
       </div>
 
       <div id="chat-input">
@@ -57,18 +57,27 @@
 
             $("#input-text").val("");
           }
+          
+          let chatPane = $("#chat-content");
+          chatPane.scrollTop(chatPane[0].scrollHeight);
         }
 
         function updateChat() {
           $.ajax({
             url:  "log.html",
+            cache: false,
             success:  function(html) {
+              let chatPane = $("#chat-content");
+              let scrollDown = Math.abs(chatPane[0].scrollHeight - chatPane.scrollTop() - chatPane.innerHeight()) <= 1;
+
               $("#chat-content").html(html);
+
+              if (scrollDown) chatPane.scrollTop(chatPane[0].scrollHeight);
             }
           });
         }
 
-        setInterval(updateChat, 200);
+        setInterval(updateChat, 500);
       });
 
       function preventSubmit(event) {
