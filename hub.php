@@ -5,31 +5,45 @@
         $conn = mysqli_connect($server, $user, $pass,$db); 
         //newChatRooom
         if($_POST["newchat"]??""){
-            $room_name=$_POST["room_name"]??"";
+            $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
+            //prevents duplicate chat-room names
+            $i=1;
+                while ($row = mysqli_fetch_array($hubs)) {
+                    if($row['room_name']==$_POST["room_name"]??""){
+                        $i=0;break;
+                    }
+                }
+            if($i){
+                $room_name=$_POST["room_name"]??"";
 
-            if($_POST["private_room"]??""){
-                $private_room=1;
-                $room_code=(random_int(10000,99999));}
+                if($_POST["private_room"]??""){
+                    $private_room=1;
+                    $room_code=(random_int(10000,99999));}
 
-            else{$private_room=0;
-                $room_code=NULL;}
+                else{$private_room=0;
+                    $room_code=NULL;}
 
-            $query="INSERT INTO `chathubs`(`room_name`, `user_count`, `private_room`, `room_code`) 
-            VALUES ('$room_name','0','$private_room','$room_code')";
-            if($private_room)
-                echo "CHAT SUCCESSFULLY CREATED, ChAT coDe:$room_code";
+                $query="INSERT INTO `chathubs`(`room_name`, `user_count`, `private_room`, `room_code`) 
+                VALUES ('$room_name','0','$private_room','$room_code')";
+                if($private_room)
+                    echo "CHAT SUCCESSFULLY CREATED, ChAT coDe:$room_code";
+                else 
+                    echo "CHAT SUCCESSFULLY CREATED";
+                mysqli_query($conn, $query);
+            }
             else 
-                echo "CHAT SUCCESSFULLY CREATED";
-            mysqli_query($conn, $query);
+                echo "chat-room name exists, enter another";
             
         }
-
+        //join private chat
         if($_POST["joinchat"]??""){
-            $code= $_POST["joinchat"]??"";
-            echo $code;
-            $query=mysqli_query($conn,"SELECT * FROM chathubs WHERE 'room_code'= $code  ");
-            while($chat= mysqli_fetch_array($query)){
-            echo "you are being directed to chat room:{$chat['room_name']}";}
+            $code= $_POST["join_room"]??"";
+            $query=mysqli_fetch_array(mysqli_query($conn,"SELECT `room_name`, `user_count`, `private_room`, `room_code` FROM `chathubs` WHERE room_code=$code"));
+            //chatcode validation
+            if($query)
+                echo "<h3>you are being directed to chat room: {$query['room_name']} ...</h3>";
+            else
+                echo "invalid chat-code ";
         }
     ?>
 
