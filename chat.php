@@ -35,6 +35,8 @@
 
       p {
         color: white;
+        margin: 0;
+        padding: 5px;
       }
 
       #chatpane {
@@ -47,6 +49,7 @@
         width: 50%;
         height: 85%;
         margin: auto;
+        padding: 5px;
         overflow-y: scroll;
         border-style: solid;
         background-color: rgb(0, 0, 10);
