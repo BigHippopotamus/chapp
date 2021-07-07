@@ -1,16 +1,22 @@
 <?php
   session_start();
 
-  if (!isset($_POST['user'])) {
-    $uname = "test";
+  if (isset($_SESSION['room'])) {
+    $room = $_SESSION['room'];
   } else {
-    $uname = $_POST['user'];
+    $room = 18694;
+    //header("Location: hub.php");
+    //exit;
   }
 
-  $_SESSION['user'] = $uname;
+  if (isset($_SESSION['user'])) {
+    $uname = $_SESSION['user'];
+  } else {
+    $uname = "test";
+  }
 
-  if (!file_exists("log.html")) {
-    fopen("log.html", "a+");
+  if (!file_exists("chatlogs/$room.html")) {
+    fopen("chatlogs/$room.html", "a+");
   }
 ?>
 
@@ -18,12 +24,58 @@
 <html>
   <head>
     <title>Chat room</title>
-    <link rel="stylesheet" href="style.css" />
+    <!--link rel="stylesheet" href="style.css" /-->
+    <style>
+      body{
+        background-image: url("chapp_bg3.jpg");
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        background-attachment: fixed;
+      }
+
+      p {
+        color: white;
+      }
+
+      #chatpane {
+        width: 60vw;
+        height: 90vh;
+        margin: auto;
+      }
+
+      #chat-content {
+        width: 50%;
+        height: 85%;
+        margin: auto;
+        overflow-y: scroll;
+        border-style: solid;
+        background-color: rgb(0, 0, 10);
+        background-color: rgba(0, 0, 10, 0.7);
+      }
+
+      #input-form {
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        column-gap: 5px;
+      }
+
+      #exit-button {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+      }
+
+      #uname {
+        color: darkviolet;
+        font-weight: bold;
+      }
+    </style>
   </head>
 
   <body>
-    <div id="chatpane" style="width: 60vw; height: 90vh; margin: auto">
-      <div id="chat-content" style="width: 50%; height: 70%; margin: auto; overflow-y: scroll; border-style: solid">
+    <div id="chatpane">
+      <div id="chat-content">
       </div>
 
       <div id="chat-input">
@@ -31,6 +83,10 @@
           <input type="text" id="input-text" />
           <input type="submit" id="submit-button" value="Send" />
         </form>
+      </div>
+
+      <div id="exit-button">
+        <button type="button" onclick="location.href = 'hub.php';">Leave Chat</button>
       </div>
     </div>
 
@@ -52,7 +108,8 @@
           if (msg !== "") {
             $.post("post.php", 
             {
-              message:  msg
+              message:  msg,
+              link: <?php echo "\"chatlogs/$room.html\""; ?>
             });
 
             $("#input-text").val("");
@@ -64,7 +121,7 @@
 
         function updateChat() {
           $.ajax({
-            url:  "log.html",
+            url:  <?php echo "\"chatlogs/$room.html\""; ?>,
             cache: false,
             success:  function(html) {
               let chatPane = $("#chat-content");
