@@ -12,7 +12,8 @@
   if (isset($_SESSION['user'])) {
     $uname = $_SESSION['user'];
   } else {
-    $uname = "test";
+    $_SESSION['user'] = "test";
+    $uname = $_SESSION['user'];
   }
 
   if (!file_exists("chatlogs/$room.html")) {
