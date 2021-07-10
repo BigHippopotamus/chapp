@@ -144,7 +144,7 @@ session_start();
         <div id="parent-signin" style="display: none;">
             <div id="container-signin">
                 <p class="title">Create a New Account!</p>
-                <form id="signupform" action="signupcheck.php" method="post">
+                <form id="signupform" action="signincheck.php" method="post">
                     <div class="floating-label-grp">
                         <label class="floating-label">Email ID:</label>
                         <input type="text" id="email" placeholder="Ex: tomcruise@gmail.com" class="form-control"/>
