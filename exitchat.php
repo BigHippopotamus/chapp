@@ -5,31 +5,33 @@
   if (isset($_SESSION['room'])) {
     $room = $_SESSION['room'];
   } else {
-    echo "An error has occured";
-    exit;
+    //echo "An error has occured";
+    //exit;
+    $room = 26901;
   }
 
-  if (isset($_SESSION['user'])) {
-    $uname = $_SESSION['user'];
-  } else {
-    echo "An error has occured";
-    exit;
-  }
-
-  $conn = mysqliconnect($server, $user, $pass, $db);
+  $conn = mysqli_connect($server, $user, $pass, $db);
   if (!$conn) {
     echo "An error has occured";
     exit;
   } else {
-    $query1 = "DELETE FROM chat$room WHERE uname=$uname";
-    $res1 = mysqli_query($conn, $query1);
+    $update_query = "UPDATE $chattable SET user_count=user_count-1 WHERE room_code=$room";
+    mysqli_query($conn, $update_query);
 
-    $query2 = "SELECT * FROM chat$room";
-    $res2 = mysqli_query($conn, $query2);
-    if (mysqli_num_rows($res2) <= 0 && file_exists("chatlogs/$room.html")) {
-      unlink("chatlogs/$room.html", "a+");
+    $check_query = "SELECT user_count FROM $chattable WHERE room_code=$room";
+    $result = mysqli_query($conn, $check_query);
+    $row = mysqli_fetch_array($result);
+    echo $row['user_count'];
+    if ($row['user_count'] <= 0) {
+      if (file_exists("chatlogs/$room.html")) {
+        unlink("chatlogs/$room.html");
+      }
+
+      $delete_query = "DELETE FROM $chattable WHERE room_code=$room";
+      mysqli_query($conn, $delete_query);
     }
 
+    unset($_SESSION['room']);
     header("Location: hub.php");
   }
 ?>
