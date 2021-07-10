@@ -52,6 +52,14 @@
                 echo "invalid chat-code ";
         }
     ?>
+    <style>
+      body{
+        background-image: url("chapp_bg3.jpg");
+        background-size: cover; 
+        background-attachment: fixed;
+        color: white;;
+        }
+    </style>
 
     <body>
         <div style="margin-top: 10%; float:left">
@@ -60,7 +68,7 @@
                 $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
                 while ($row = mysqli_fetch_array($hubs)) {
                 if(!$row['private_room'])
-                    echo "<a href=''>{$row['room_name']} </a> -- {$row['user_count']}<br>";
+                    echo "<a href='chat.php'>{$row['room_name']} </a> -- {$row['user_count']}<br>";
                 }
                 
             ?>
