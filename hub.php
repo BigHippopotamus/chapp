@@ -8,28 +8,33 @@
             $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
             //prevents duplicate chat-room names
             $i=1;
-                while ($row = mysqli_fetch_array($hubs)) {
+                while ($row = mysqli_fetch_array($hubs)) 
                     if($row['room_name']==$_POST["room_name"]??""){
                         $i=0;break;
                     }
-                }
+                
             if($i){
                 $room_name=$_POST["room_name"]??"";
 
                 if($_POST["private_room"]??""){
-                    $private_room=1;
-                    $room_code=(random_int(10000,99999));}
+                    $private_room=1;}
 
-                else{$private_room=0;
-                    $room_code=NULL;}
-
+                else {$private_room=0;}
+                $c=1;
+                while($c){
+                    $c=0;
+                while ($row = mysqli_fetch_array($hubs)) {
+                    $code=random_int(10000,99999);
+                    if($row['room_code']==$code){
+                        $c=1; break;}
+                    }   
+                }
+                $room_code=($code);
                 $query="INSERT INTO `chathubs`(`room_name`, `user_count`, `private_room`, `room_code`) 
                 VALUES ('$room_name','0','$private_room','$room_code')";
-                if($private_room)
-                    echo "CHAT SUCCESSFULLY CREATED, ChAT coDe:$room_code";
-                else 
-                    echo "CHAT SUCCESSFULLY CREATED";
+                echo "CHAT SUCCESSFULLY CREATED, ChAT coDe:$room_code";
                 mysqli_query($conn, $query);
+                
             }
             else 
                 echo "chat-room name exists, enter another";
