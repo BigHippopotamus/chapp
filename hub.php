@@ -21,6 +21,7 @@
 
                 else {$private_room=0;}
                 $c=1;
+                $code=random_int(10000,99999);;
                 while($c){
                     $c=0;
                 while ($row = mysqli_fetch_array($hubs)) {
