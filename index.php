@@ -115,12 +115,12 @@ session_start();
         <button onclick="displaysigninform()" class="butt" style="margin-left: 40px;">Sign in</button>
         </div>
         <br>
- 
-        <div id="parent-login" style="display: none;">
             
-                            <div id="container-login">
+        <!--  Log in Form -->
+        <div id="parent-login" style="display: none;">
+            <div id="container-login">
                 <p class="title">Login</p>
-                <form id="loginform">
+                <form id="loginform" action="logincheck.php" method="post">
                    <div class="floating-label-grp">
                         <label class="floating-label">Username:</label>
                         <input type="text"  id="uname-login"/>
@@ -140,11 +140,11 @@ session_start();
                  </div>
         
         </div>
-        <!--    -------------------     -->
+        <!--   Sign-up Form  -->
         <div id="parent-signin" style="display: none;">
             <div id="container-signin">
                 <p class="title">Create a New Account!</p>
-                <form id="signupform">
+                <form id="signupform" action="signupcheck.php" method="post">
                     <div class="floating-label-grp">
                         <label class="floating-label">Email ID:</label>
                         <input type="text" id="email" placeholder="Ex: tomcruise@gmail.com" class="form-control"/>
