@@ -1,5 +1,8 @@
 <?php
 session_start();
+include("loginsignincheck.php");
+
+$conn = mysqli_connect($server, $user, $pass);
 ?>
 
 <html>
@@ -69,6 +72,17 @@ session_start();
                 border-radius: 25px;
 
             }
+
+            .form-error span {
+                width:80%;
+                height:35px;
+                margin: 3px 10%;
+                font-size: 15px;
+                color: #d83d5a;
+            }
+            .form-error input{
+                border:2px solid #d83d5a;
+            }
             .floating-label{
                 font-family: "Righteous";
             }
@@ -89,7 +103,7 @@ session_start();
             }
         </style>
 
-        <script type="text/javascript">
+        <script type="text/javascript" src="signupcheck.php">
             function displayloginform(){
                 
                 document.getElementById("parent-login").style.display="block";
@@ -101,7 +115,7 @@ session_start();
                 document.getElementById("parent-login").style.display="none";
                 
             }
-            
+                        
         </script>
 
     </head>
@@ -121,16 +135,27 @@ session_start();
             <div id="container-login">
                 <p class="title">Login</p>
                 <form id="loginform" action="logincheck.php" method="post">
-                   <div class="floating-label-grp">
+                <div class="floating-label-grp
+                        <?php if(isset($_SESSION[$unotfound)]): ?> form-error <?php endif ?> "
+                    >
                         <label class="floating-label">Username:</label>
                         <input type="text"  id="uname-login"/>
+                        <?php
+                            if(isset($_SESSION[$unotfound)])): ?>
+                                <span><?php echo $_SESSION[$unotfound)])] ?></span>
+                            <?php endif ?>
                         
                      </div>
                      
-                     <div class="floating-label-grp">
+                     <div class="floating-label-grp
+                        <?php if(isset($_SESSION[$pincorrect)]): ?> form-error <?php endif ?> "
+                    >
                         <label class="floating-label">Password:</label>
                         <input type="password" id="password-login" />
-                         
+                        <?php
+                            if(isset($_SESSION[$pincorrect)])): ?>
+                                <span><?php echo $_SESSION[$pincorrect)])] ?></span>
+                            <?php endif ?>
                     </div>
                     <div style="text-align: center;">
                     <input type="reset"  class="sub"/>
@@ -145,14 +170,25 @@ session_start();
             <div id="container-signin">
                 <p class="title">Create a New Account!</p>
                 <form id="signupform" action="signincheck.php" method="post">
-                    <div class="floating-label-grp">
+                    <div class="floating-label-grp
+                        <?php if(isset($_SESSION[$etaken)]): ?> form-error <?php endif ?> "
+                    >
                         <label class="floating-label">Email ID:</label>
                         <input type="text" id="email" placeholder="Ex: tomcruise@gmail.com" class="form-control"/>
-                        
+                        <?php
+                            if(isset($_SESSION[$etaken)])): ?>
+                                <span><?php echo $_SESSION[$etaken)] ?></span>
+                            <?php endif ?>
                     </div>
-                    <div class="floating-label-grp">
+                    <div class="floating-label-grp
+                       <?php if(isset($_SESSION[$utaken])): ?> form-error <?php endif ?>"
+                    >
                         <label class="floating-label">Username:</label>
                         <input type="text" id="uname-signin" placeholder="Ex: naruto1234" class="form-control"/>
+                        <?php
+                            if(isset($_SESSION[$utaken])): ?>
+                                <span><?php echo $_SESSION[$utaken] ?></span>
+                            <?php endif ?>
                         
                     </div>
                     <div class="floating-label-grp">
