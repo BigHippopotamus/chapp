@@ -31,6 +31,8 @@
                     }   
                 }
                 $room_code=($code);
+                $_SESSION['room']=$code;
+                echo $_SESSION['room'];
                 $query="INSERT INTO `chathubs`(`room_name`, `user_count`, `private_room`, `room_code`) 
                 VALUES ('$room_name','0','$private_room','$room_code')";
                 echo "CHAT SUCCESSFULLY CREATED, ChAT coDe:$room_code";
