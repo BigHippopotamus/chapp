@@ -2,7 +2,6 @@
   session_start();
   include "config.php";
 
-  $_SESSION['room'] = 91474;
   if (isset($_SESSION['room'])) {
     $room = $_SESSION['room'];
     $conn = mysqli_connect($server, $user, $pass, $db);
