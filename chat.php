@@ -25,7 +25,6 @@
 <html>
   <head>
     <title>Chat room</title>
-    <!--link rel="stylesheet" href="style.css" /-->
     <style>
       body{
         background-image: url("chapp_bg3.jpg");
@@ -44,6 +43,13 @@
         width: 60vw;
         height: 90vh;
         margin: auto;
+      }
+
+      #room-code {
+        height: 10%;
+        margin: auto;
+        text-align: center;
+        font-weight: bold;
       }
 
       #chat-content {
@@ -79,6 +85,10 @@
 
   <body>
     <div id="chatpane">
+      <div id="room-code">
+        <p id="code">Room Code: <?php echo $room; ?></p>
+      </div>
+
       <div id="chat-content">
       </div>
 
