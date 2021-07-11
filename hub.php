@@ -1,3 +1,4 @@
+
 <?php
         session_start();
         include 'config.php';
@@ -50,14 +51,14 @@
             $query=mysqli_fetch_array(mysqli_query($conn,"SELECT `room_name`, `user_count`, `private_room`, `room_code` FROM `chathubs` WHERE room_code=$code"));
             //chatcode validation
             if($query)
-                {echo "<h3>you are being directed to chat room: {$query['room_name']} ...</h3>";
+                {
                 $_SESSION['room']=$query['room_code'];
                 header('Location: chat.php');}
             else
                 echo "invalid chat-code ";
         }
     ?>
-<html>
+<html>    
     <style>
       body{
         background-image: url("chapp_bg3.jpg");
@@ -68,19 +69,16 @@
     </style>
 
     <body>
+       
         <div style="margin-top: 10%; float:left">
             <h1>Currently active chat rooms</h1>
             <?php 
-                $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
-                while ($row = mysqli_fetch_array($hubs)) 
-                if(!$row['private_room'])
-                ?>
-                    <form action="chat.php">
-                        <input type="submit" value="sdfgh">
-                    </form>
-                <? 
                 
-                //<?echo $row['room_name'].$row['user_count'];
+                $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
+                while ($row = mysqli_fetch_array($hubs)) {
+                $_SESSION['room']=$row['room_code'];
+                if(!$row['private_room'])
+                    echo "<a href='chat.php'> {$row['room_name']}</a><br>";}
             ?>
         </div>
         
