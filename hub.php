@@ -60,24 +60,45 @@
 <html> 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy|Acme|Righteous|Pacifico|Courgette">   
     <style>
-      body{
+      
+        body{
         background-image: url("chapp_bg3.jpg");
+        background-repeat: no-repeat; 
         background-size: cover; 
         background-attachment: fixed;
-        color: white;;
-        }
+            }
         .sub{
-                margin-top: 15%;
+            margin-top: 5%;
                 border: none;
                 padding: 10px;
                 color: #14063a;
                 font-family: "Acme";
                 font-size: 17px;
-                background: #eaeaff;
+                background: linear-gradient(to right, #96d3ff, #ac66cc, #3b14a7);
+                border-radius: 25px;
+                cursor: pointer;
+                width: wrap;
+            }
+        .input{
+            margin-top: 5%;
+                border: none;
+                padding: 10px;
+                color: #14063a;
+                font-family: "Acme";
+                font-size: 17px;
+                background:#eaeaff;
                 border-radius: 25px;
                 width: wrap;
             }
-        .title{
+        .txt{
+                color: #ffff;
+                font-family: "Acme";
+                font-size: 20px;
+                margin-top: 0%;
+                text-align: center;
+            } 
+            
+        h1{
                 color: #ffff;
                 font-family: "Courgette";
                 font-size: 30px;
@@ -104,12 +125,13 @@
         
             <h1> Create new chat</h1>
             <form method="POST", action="">
-                enter chat name
-                <input type="text" name="room_name" class="sub"><br>
-                <label> <input type="checkbox"  name="private_room" class="sub"> private chat</label><br>            
+                <h4 class txt>enter chat name</h4>
+                <input type="text" name="room_name" class="input"><br>
+                <label> <input type="checkbox" class="txt" name="private_room" class="sub"> private chat</label><br>            
                 <input type="submit" name="newchat" class="sub" value="create chatroom"><br>
+                <h1>.</h1>
                 <h1> Join existing chat</h1>
-                <input type="text" name="join_room" class="sub" ><br>
+                <input type="text" name="join_room" class="input" ><br>
                 <input type="submit" name="joinchat" class="sub" value="join chatroom"><br>
             </form>
 
