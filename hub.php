@@ -62,7 +62,7 @@
     <style>
       
         body{
-        background-image: url("chapp_bg3.jpg");
+        background-image: url("chat_bg.jpg");
         background-repeat: no-repeat; 
         background-size: cover; 
         background-attachment: fixed;
@@ -103,14 +103,22 @@
                 font-family: "Courgette";
                 font-size: 30px;
                 margin-top: 0%;
+                margin-left: 15px;
                 text-align: center;
             }  
+        a{
+            color: #eaeaff;
+            font-size: 20px;
+            margin-left: 30px;
+            padding: 10px;
+
+        }
     </style>
 
     <body>
        
         <div style="margin-top: 10%; float:left">
-            <h1>Currently active chat rooms</h1>
+            <h1 >Currently active chat rooms</h1>
             <?php 
                 
                 $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
@@ -125,14 +133,14 @@
         
             <h1> Create new chat</h1>
             <form method="POST", action="">
-                <h4 class txt>enter chat name</h4>
-                <input type="text" name="room_name" class="input"><br>
-                <label> <input type="checkbox" class="txt" name="private_room" class="sub"> private chat</label><br>            
-                <input type="submit" name="newchat" class="sub" value="create chatroom"><br>
+                <h4 class txt>Enter Chat Name:</h4>
+                <input type="text" name="room_name" class="input"><br><br>
+                <label> <input type="checkbox" class="txt" name="private_room" class="sub"> private chat</label><br><br>        
+                <input type="submit" name="newchat" class="sub" value="Create Chatroom"><br>
                 <h1>.</h1>
                 <h1> Join existing chat</h1>
                 <input type="text" name="join_room" class="input" ><br>
-                <input type="submit" name="joinchat" class="sub" value="join chatroom"><br>
+                <input type="submit" name="joinchat" class="sub" value="Join Chatroom"><br>
             </form>
 
         </div>
