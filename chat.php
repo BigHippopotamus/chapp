@@ -1,10 +1,23 @@
 <?php
   session_start();
+  include "config.php";
 
+  $_SESSION['room'] = 91474;
   if (isset($_SESSION['room'])) {
     $room = $_SESSION['room'];
+    $conn = mysqli_connect($server, $user, $pass, $db);
+
+    $topic_query = "SELECT room_name FROM $chattable WHERE room_code=$room";
+    $topic_result = mysqli_fetch_array(mysqli_query($conn, $topic_query));
+    $topic = $topic_result[0];
+
+    $add_count = "UPDATE $chattable SET user_count=user_count+1 WHERE room_code=$room";
+    $add_result = mysqli_query($conn, $add_count);
+
+    mysqli_close($conn);
   } else {
-    $room = 18694;
+    $room = 91474;
+    $topic = "TEST";
     //header("Location: hub.php");
     //exit;
   }
@@ -19,6 +32,8 @@
   if (!file_exists("chatlogs/$room.html")) {
     fopen("chatlogs/$room.html", "a+");
   }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +60,7 @@
         margin: auto;
       }
 
-      #room-code {
+      #room-data {
         height: 10%;
         margin: auto;
         text-align: center;
@@ -54,7 +69,7 @@
 
       #chat-content {
         width: 50%;
-        height: 85%;
+        height: 80%;
         margin: auto;
         padding: 5px;
         overflow-y: scroll;
@@ -80,12 +95,22 @@
         color: darkviolet;
         font-weight: bold;
       }
+
+      #topic {
+        font-size: x-large;
+        padding: 0px;
+      }
+
+      #code {
+        font-size: small;
+      }
     </style>
   </head>
 
   <body>
     <div id="chatpane">
-      <div id="room-code">
+      <div id="room-data">
+        <p id="topic"><?php echo $topic; ?></p>
         <p id="code">Room Code: <?php echo $room; ?></p>
       </div>
 
@@ -100,7 +125,7 @@
       </div>
 
       <div id="exit-button">
-        <button type="button" onclick="location.href = 'hub.php';">Leave Chat</button>
+        <button type="button" onclick="location.href = 'exitchat.php';">Leave Chat</button>
       </div>
     </div>
 
@@ -149,6 +174,10 @@
         }
 
         setInterval(updateChat, 500);
+      });
+
+      $(window).on("beforeunload", function() {
+        $.post("exitchat.php");
       });
 
       function preventSubmit(event) {
