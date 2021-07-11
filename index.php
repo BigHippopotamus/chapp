@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("config.php");
 include("loginsignincheck.php");
 
 $conn = mysqli_connect($server, $user, $pass);
@@ -136,25 +137,25 @@ $conn = mysqli_connect($server, $user, $pass);
                 <p class="title">Login</p>
                 <form id="loginform" action="logincheck.php" method="post">
                 <div class="floating-label-grp
-                        <?php if(isset($_SESSION[$unotfound)]): ?> form-error <?php endif ?> "
-                    >
+                        <?php if(isset($_SESSION[$unotfound])): ?> form-error <?php endif ?> "
+                >
                         <label class="floating-label">Username:</label>
                         <input type="text"  id="uname-login"/>
                         <?php
-                            if(isset($_SESSION[$unotfound)])): ?>
-                                <span><?php echo $_SESSION[$unotfound)])] ?></span>
+                            if(isset($_SESSION[$unotfound])): ?>
+                                <span><?php echo $_SESSION[$unotfound] ?></span>
                             <?php endif ?>
                         
                      </div>
                      
                      <div class="floating-label-grp
-                        <?php if(isset($_SESSION[$pincorrect)]): ?> form-error <?php endif ?> "
+                        <?php if(isset($_SESSION[$pincorrect])): ?> form-error <?php endif ?> "
                     >
                         <label class="floating-label">Password:</label>
                         <input type="password" id="password-login" />
                         <?php
-                            if(isset($_SESSION[$pincorrect)])): ?>
-                                <span><?php echo $_SESSION[$pincorrect)])] ?></span>
+                            if(isset($_SESSION[$pincorrect])): ?>
+                                <span><?php echo $_SESSION[$pincorrect] ?></span>
                             <?php endif ?>
                     </div>
                     <div style="text-align: center;">
@@ -171,13 +172,13 @@ $conn = mysqli_connect($server, $user, $pass);
                 <p class="title">Create a New Account!</p>
                 <form id="signupform" action="signincheck.php" method="post">
                     <div class="floating-label-grp
-                        <?php if(isset($_SESSION[$etaken)]): ?> form-error <?php endif ?> "
+                        <?php if(isset($_SESSION[$etaken])): ?> form-error <?php endif ?> "
                     >
                         <label class="floating-label">Email ID:</label>
                         <input type="text" id="email" placeholder="Ex: tomcruise@gmail.com" class="form-control"/>
                         <?php
-                            if(isset($_SESSION[$etaken)])): ?>
-                                <span><?php echo $_SESSION[$etaken)] ?></span>
+                            if(isset($_SESSION[$etaken])): ?>
+                                <span><?php echo $_SESSION[$etaken] ?></span>
                             <?php endif ?>
                     </div>
                     <div class="floating-label-grp

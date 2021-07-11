@@ -8,17 +8,10 @@ $conn = mysqli_connect($server, $user, $pass);
   if (!$conn){ 
    echo "NO CONNECTION ";
   }
-  else{
-	echo "<p><i>Connection Established Successfully<\i><\p>"."<br>";
-	}
-
 
 $sqldb = "CREATE DATABASE IF NOT EXISTS db";
 
-if( mysqli_query($conn, $sqldb)){
-	echo "<p><i>Connection Established Successfully<\i><\p>"."<br>";
-	}
-else {
+if( !(mysqli_query($conn, $sqldb))){
 	echo "ERROR WHILE CREATING DATABASE !  ".mysqli_error($conn);
 	}
 	
@@ -31,10 +24,7 @@ $sqltab = "CREATE TABLE IF NOT EXISTS usertable(
     email VARCHAR(20) NOT NULL,
     )";
     
-    if( mysqli_query($conn, $sqltab)){
-        echo "<p><i>Table Created Successfully<\i><\p>"."<br>";
-        }
-    else {
+    if( !(mysqli_query($conn, $sqltab))){
         echo "ERROR WHILE CREATING TABLE !  "."<br>".mysqli_error($conn);
         }
     
@@ -48,9 +38,11 @@ $sqltab = "CREATE TABLE IF NOT EXISTS usertable(
             $rese = mysqli_query($conn, $sqle) or die(mysqli_error($conn));
 
             if(mysqli_num_rows($resu) > 0){
-                $_SESSION[$utaken] = "This username has already been taken. Please go for another one."
+                $uerror = "This username has already been taken. Please go for another one.";
+                $_SESSION[$utaken] = $uerror;
             }else if(mysqli_num_rows($rese) > 0){
-                $_SESSION[$etaken] = "An user has already signed-in with this Email ID. Please use an other Email ID or try to Log in."
+                $eerror = "An user has already signed-in with this Email ID. Please use an other Email ID or try to Log in.";
+                $_SESSION[$etaken] = $eerror;
             }else{
                 $sqlins = "INSERT INTO usertable (uname, pwd, email)
                 VALUES ( $_SESSION[uname],$_SESSION[password-signin],$_SESSION[email]";
@@ -77,11 +69,13 @@ $sqltab = "CREATE TABLE IF NOT EXISTS usertable(
                     die();
                 }
             else{
-                $_SESSION[pincorrect] = "Incorrect Password";
+                $perror = "Incorrect Password";
+                $_SESSION[pincorrect] = $perror;
             }
         }
         else{
-            $_SESSION[pincorrect] = "User Not Found. Please Sign-in";
+            $umessage = "User Not Found. Please Sign-in";
+            $_SESSION[unotfound] = $umessage;
         }
 
 
