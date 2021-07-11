@@ -132,7 +132,8 @@ $conn = mysqli_connect($server, $user, $pass);
         <br>
             
         <!--  Log in Form -->
-        <div id="parent-login" style="display: none;">
+        <div id="parent-login" style="display: 
+        <?php if(isset($_SESSION['unotfound']) || isset($_SESSION['pincorrect'])) echo "block"; else echo "none"; ?>;">
             <div id="container-login">
                 <p class="title">Login</p>
                 <form id="loginform" action="logincheck.php" method="post">
@@ -144,7 +145,7 @@ $conn = mysqli_connect($server, $user, $pass);
                         <?php
                             if(isset($_SESSION['unotfound'])): ?>
                                 <span><?php echo $_SESSION['unotfound'] ?></span>
-                            <?php endif ?>
+                            <?php unset($_SESSION['unotfound']); endif;?>
                         
                      </div>
                      
@@ -156,7 +157,7 @@ $conn = mysqli_connect($server, $user, $pass);
                         <?php
                             if(isset($_SESSION['pincorrect'])): ?>
                                 <span><?php echo $_SESSION['pincorrect'] ?></span>
-                            <?php endif ?>
+                            <?php unset($_SESSION['pincorrect']); endif;?>
                     </div>
                     <div style="text-align: center;">
                     <input type="reset"  class="sub"/>
@@ -167,7 +168,8 @@ $conn = mysqli_connect($server, $user, $pass);
         
         </div>
         <!--   Sign-up Form  -->
-        <div id="parent-signin" style="display: none;">
+        <div id="parent-signin" style="display: 
+        <?php if(isset($_SESSION['etaken']) || isset($_SESSION['utaken'])) echo "block"; else echo "none"; ?>;">
             <div id="container-signin">
                 <p class="title">Create a New Account!</p>
                 <form id="signupform" action="signincheck.php" method="post">
@@ -179,7 +181,7 @@ $conn = mysqli_connect($server, $user, $pass);
                         <?php
                             if(isset($_SESSION['etaken'])): ?>
                                 <span><?php echo $_SESSION['etaken'] ?></span>
-                            <?php endif ?>
+                            <?php unset($_SESSION['etaken']); endif;?>
                     </div>
                     <div class="floating-label-grp
                        <?php if(isset($_SESSION['utaken'])): ?> form-error <?php endif ?>"
@@ -189,7 +191,7 @@ $conn = mysqli_connect($server, $user, $pass);
                         <?php
                             if(isset($_SESSION['utaken'])): ?>
                                 <span><?php echo $_SESSION['utaken'] ?></span>
-                            <?php endif ?>
+                            <?php unset($_SESSION['utaken']); endif;?>
                         
                     </div>
                     <div class="floating-label-grp">
