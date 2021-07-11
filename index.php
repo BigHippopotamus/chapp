@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("config.php");
-include("loginsignincheck.php");
+//include("loginsignincheck.php");
 
 $conn = mysqli_connect($server, $user, $pass);
 ?>
@@ -123,7 +123,7 @@ $conn = mysqli_connect($server, $user, $pass);
 
     <body>
         <p id="heading"><b>chapp</b></p>
-        <p id="desc">Online chatrooms //Desription of the website</p>
+        <p id="desc">Online chatrooms</p>
         <br><br>
         <div class="buttons">
         <button onclick="displayloginform()" class="butt" style="width: 95px;"> Log  in </button>
@@ -137,25 +137,25 @@ $conn = mysqli_connect($server, $user, $pass);
                 <p class="title">Login</p>
                 <form id="loginform" action="logincheck.php" method="post">
                 <div class="floating-label-grp
-                        <?php if(isset($_SESSION[$unotfound])): ?> form-error <?php endif ?> "
+                        <?php if(isset($_SESSION['unotfound'])): ?> form-error <?php endif ?> "
                 >
                         <label class="floating-label">Username:</label>
-                        <input type="text"  id="uname-login"/>
+                        <input type="text" id="uname-login" name="uname-login"/>
                         <?php
-                            if(isset($_SESSION[$unotfound])): ?>
-                                <span><?php echo $_SESSION[$unotfound] ?></span>
+                            if(isset($_SESSION['unotfound'])): ?>
+                                <span><?php echo $_SESSION['unotfound'] ?></span>
                             <?php endif ?>
                         
                      </div>
                      
                      <div class="floating-label-grp
-                        <?php if(isset($_SESSION[$pincorrect])): ?> form-error <?php endif ?> "
+                        <?php if(isset($_SESSION['pincorrect'])): ?> form-error <?php endif ?> "
                     >
                         <label class="floating-label">Password:</label>
-                        <input type="password" id="password-login" />
+                        <input type="password" id="password-login" name="password-login" />
                         <?php
-                            if(isset($_SESSION[$pincorrect])): ?>
-                                <span><?php echo $_SESSION[$pincorrect] ?></span>
+                            if(isset($_SESSION['pincorrect'])): ?>
+                                <span><?php echo $_SESSION['pincorrect'] ?></span>
                             <?php endif ?>
                     </div>
                     <div style="text-align: center;">
@@ -172,29 +172,29 @@ $conn = mysqli_connect($server, $user, $pass);
                 <p class="title">Create a New Account!</p>
                 <form id="signupform" action="signincheck.php" method="post">
                     <div class="floating-label-grp
-                        <?php if(isset($_SESSION[$etaken])): ?> form-error <?php endif ?> "
+                        <?php if(isset($_SESSION['etaken'])): ?> form-error <?php endif ?> "
                     >
                         <label class="floating-label">Email ID:</label>
-                        <input type="text" id="email" placeholder="Ex: tomcruise@gmail.com" class="form-control"/>
+                        <input type="text" id="email" name="email" placeholder="Ex: tomcruise@gmail.com" class="form-control"/>
                         <?php
-                            if(isset($_SESSION[$etaken])): ?>
-                                <span><?php echo $_SESSION[$etaken] ?></span>
+                            if(isset($_SESSION['etaken'])): ?>
+                                <span><?php echo $_SESSION['etaken'] ?></span>
                             <?php endif ?>
                     </div>
                     <div class="floating-label-grp
-                       <?php if(isset($_SESSION[$utaken])): ?> form-error <?php endif ?>"
+                       <?php if(isset($_SESSION['utaken'])): ?> form-error <?php endif ?>"
                     >
                         <label class="floating-label">Username:</label>
-                        <input type="text" id="uname-signin" placeholder="Ex: naruto1234" class="form-control"/>
+                        <input type="text" id="uname-signin" name="uname-signin" placeholder="Ex: naruto1234" class="form-control"/>
                         <?php
-                            if(isset($_SESSION[$utaken])): ?>
-                                <span><?php echo $_SESSION[$utaken] ?></span>
+                            if(isset($_SESSION['utaken'])): ?>
+                                <span><?php echo $_SESSION['utaken'] ?></span>
                             <?php endif ?>
                         
                     </div>
                     <div class="floating-label-grp">
                         <label class="floating-label">Password:</label>
-                        <input type="password" id="password-signin" class="form-control"/>
+                        <input type="password" id="password-signin" name="password-signin" class="form-control"/>
                         
                     </div>
                     <div style="text-align: center;">
