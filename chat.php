@@ -3,7 +3,6 @@
   include "config.php";
 
   if (isset($_SESSION['room'])) {
-    echo $_SESSION['room'];
     $room = $_SESSION['room'];
     $conn = mysqli_connect($server, $user, $pass, $db);
 
