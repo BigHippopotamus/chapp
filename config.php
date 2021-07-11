@@ -3,6 +3,6 @@
   $user = "root";
   $pass = "";
   $db = "chapp";
-  $usertable = "";
+  $usertable = "usertable";
   $chattable = "chathubs";
 ?>
