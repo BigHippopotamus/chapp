@@ -1,5 +1,4 @@
-<html>
-    <?php
+<?php
         session_start();
         include 'config.php';
         $conn = mysqli_connect($server, $user, $pass,$db); 
@@ -58,6 +57,7 @@
                 echo "invalid chat-code ";
         }
     ?>
+<html>
     <style>
       body{
         background-image: url("chapp_bg3.jpg");
@@ -72,12 +72,15 @@
             <h1>Currently active chat rooms</h1>
             <?php 
                 $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
-                while ($row = mysqli_fetch_array($hubs)) {
-                if(!$row['private_room']);
-                    //echo "<a href='chat.php'>{$row['room_name']} </a> -- {$row['user_count']}<br>";
-                    
-                }
+                while ($row = mysqli_fetch_array($hubs)) 
+                if(!$row['private_room'])
+                ?>
+                    <form action="chat.php">
+                        <input type="submit" value="sdfgh">
+                    </form>
+                <? 
                 
+                //<?echo $row['room_name'].$row['user_count'];
             ?>
         </div>
         
