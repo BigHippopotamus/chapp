@@ -32,11 +32,12 @@
                 }
                 $room_code=($code);
                 $_SESSION['room']=$code;
-                echo $_SESSION['room'];
                 $query="INSERT INTO `chathubs`(`room_name`, `user_count`, `private_room`, `room_code`) 
                 VALUES ('$room_name','0','$private_room','$room_code')";
-                echo "CHAT SUCCESSFULLY CREATED, ChAT coDe:$room_code";
+                //echo '<script>alert( "CHAT SUCCESSFULLY CREATED, ChAT coDe:$room_code")</script>';
+                //echo "CHAT SUCCESSFULLY CREATED, ChAT coDe:$room_code";
                 mysqli_query($conn, $query);
+                header('Location: chat.php');
                 
             }
             else 
@@ -49,7 +50,9 @@
             $query=mysqli_fetch_array(mysqli_query($conn,"SELECT `room_name`, `user_count`, `private_room`, `room_code` FROM `chathubs` WHERE room_code=$code"));
             //chatcode validation
             if($query)
-                echo "<h3>you are being directed to chat room: {$query['room_name']} ...</h3>";
+                {echo "<h3>you are being directed to chat room: {$query['room_name']} ...</h3>";
+                $_SESSION['room']=$query['room_name'];
+                header('Location: chat.php');}
             else
                 echo "invalid chat-code ";
         }
@@ -70,7 +73,7 @@
                 $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
                 while ($row = mysqli_fetch_array($hubs)) {
                 if(!$row['private_room'])
-                    echo "<a href='chat.php'>{$row['room_name']} </a> -- {$row['user_count']}<br>";
+                    echo "<a href='chat.php'>{$row['room_name']} </a><br>";// -- {$row['user_count']}
                 }
                 
             ?>
