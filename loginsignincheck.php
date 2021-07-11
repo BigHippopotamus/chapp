@@ -31,9 +31,12 @@ $sqltab = "CREATE TABLE IF NOT EXISTS usertable(
         $_SESSION[uname-signin] = $_POST['uname-signin'];
         $_SESSION[password-signin] = $_POST['password-signin'];
         $_SESSION[email] = $_POST['email'];
+        $usignin = $_SESSION[uname-signin];
+        $esignin = $_SESSION[email-signin];
+        $psignin = $_SESSION[password-signin];
 
-            $sqlu = "SELECT * FROM usertable WHERE uname='$_SESSION[uname-signin]'";
-            $sqle = "SELECT * FROM usertable WHERE uname='$_SESSION[email]'";
+            $sqlu = "SELECT * FROM usertable WHERE uname='$usignin'";
+            $sqle = "SELECT * FROM usertable WHERE uname='$esignin'";
             $resu = mysqli_query($conn, $sqlu) or die(mysqli_error($conn));
             $rese = mysqli_query($conn, $sqle) or die(mysqli_error($conn));
 
@@ -45,7 +48,7 @@ $sqltab = "CREATE TABLE IF NOT EXISTS usertable(
                 $_SESSION[$etaken] = $eerror;
             }else{
                 $sqlins = "INSERT INTO usertable (uname, pwd, email)
-                VALUES ( $_SESSION[uname],$_SESSION[password-signin],$_SESSION[email]";
+                VALUES ( $usignin,$psignin,$esignin)";
                 if (mysqli_query($conn, $sqlins)) {
                     header(location: "hub.php");
                     die();
@@ -57,9 +60,10 @@ $sqltab = "CREATE TABLE IF NOT EXISTS usertable(
     
         $_SESSION[uname-login] = $_POST['uname-login'];
         $_SESSION[password-login] = $_POST['password-login'];
-
+        $ulogin = $_SESSION[uname-login];
+        $plogin = $_SESSION[password-login];
         $row="";
-        $sqll = "SELECT * FROM usertable WHERE uname='$_SESSION[uname-login]'";
+        $sqll = "SELECT * FROM usertable WHERE uname='$ulogin'";
         $resl = mysqli_query($conn, $sqll);
         if($resl){
             $row = mysqli_fetch_assoc($resl);
