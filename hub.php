@@ -12,7 +12,7 @@
                     if($row['room_name']==$_POST["room_name"]??""){
                         $i=0;break;
                     }
-                
+                    $room_name=$_POST["room_name"]??"";
             if($i && $room_name!=""){
                 $room_name=$_POST["room_name"]??"";
 
@@ -73,8 +73,9 @@
             <?php 
                 $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
                 while ($row = mysqli_fetch_array($hubs)) {
-                if(!$row['private_room'])
-                    echo "<a href='chat.php'>{$row['room_name']} </a> -- {$row['user_count']}<br>";
+                if(!$row['private_room']);
+                    //echo "<a href='chat.php'>{$row['room_name']} </a> -- {$row['user_count']}<br>";
+                    
                 }
                 
             ?>
