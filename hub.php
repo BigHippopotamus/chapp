@@ -12,7 +12,7 @@
                     if($row['room_name']==$_POST["room_name"]??""){
                         $i=0;break;
                     }
-                    $room_name=$_POST["room_name"]??"";
+            $room_name=$_POST["room_name"]??"";
             if($i && $room_name!=""){
                 $room_name=$_POST["room_name"]??"";
 
