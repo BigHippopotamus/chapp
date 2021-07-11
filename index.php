@@ -104,7 +104,7 @@ $conn = mysqli_connect($server, $user, $pass);
             }
         </style>
 
-        <script type="text/javascript" src="signupcheck.php">
+        <script type="text/javascript" >
             function displayloginform(){
                 
                 document.getElementById("parent-login").style.display="block";
