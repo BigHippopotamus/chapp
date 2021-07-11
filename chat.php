@@ -3,6 +3,7 @@
   include "config.php";
 
   if (isset($_SESSION['room'])) {
+    echo $_SESSION['room'];
     $room = $_SESSION['room'];
     $conn = mysqli_connect($server, $user, $pass, $db);
 
@@ -10,15 +11,17 @@
     $topic_result = mysqli_fetch_array(mysqli_query($conn, $topic_query));
     $topic = $topic_result[0];
 
-    $add_count = "UPDATE $chattable SET user_count=user_count+1 WHERE room_code=$room";
-    $add_result = mysqli_query($conn, $add_count);
+    if (!isset($_SESSION['inroom'])) {
+      $add_count = "UPDATE $chattable SET user_count=user_count+1 WHERE room_code=$room";
+      $add_result = mysqli_query($conn, $add_count);
+
+      $_SESSION['inroom'] = true;
+    }
 
     mysqli_close($conn);
   } else {
-    $room = 91474;
-    $topic = "TEST";
-    //header("Location: hub.php");
-    //exit;
+    header("Location: hub.php");
+    exit;
   }
 
   if (isset($_SESSION['user'])) {

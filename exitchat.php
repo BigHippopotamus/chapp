@@ -5,9 +5,8 @@
   if (isset($_SESSION['room'])) {
     $room = $_SESSION['room'];
   } else {
-    //echo "An error has occured";
-    //exit;
-    $room = 91474;
+    header("Location: hub.php");
+    exit;
   }
 
   $conn = mysqli_connect($server, $user, $pass, $db);
@@ -32,6 +31,7 @@
     }
 
     unset($_SESSION['room']);
+    unset($_SESSION['inroom']);
     header("Location: hub.php");
   }
 
