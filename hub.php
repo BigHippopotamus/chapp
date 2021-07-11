@@ -6,14 +6,14 @@
         //newChatRooom
         if($_POST["newchat"]??""){
             $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
-            //prevents duplicate chat-room names
+            //prevents duplicate or empty chat-room names 
             $i=1;
                 while ($row = mysqli_fetch_array($hubs)) 
                     if($row['room_name']==$_POST["room_name"]??""){
                         $i=0;break;
                     }
                 
-            if($i){
+            if($i && $room_name!=""){
                 $room_name=$_POST["room_name"]??"";
 
                 if($_POST["private_room"]??""){
@@ -40,9 +40,10 @@
                 header('Location: chat.php');
                 
             }
-            else 
+            else if(!$i)
                 echo "chat-room name exists, enter another";
-            
+            else
+                echo "invalid chat-name";
         }
         //join private chat
         if($_POST["joinchat"]??""){
@@ -51,7 +52,7 @@
             //chatcode validation
             if($query)
                 {echo "<h3>you are being directed to chat room: {$query['room_name']} ...</h3>";
-                $_SESSION['room']=$query['room_name'];
+                $_SESSION['room']=$query['room_code'];
                 header('Location: chat.php');}
             else
                 echo "invalid chat-code ";
@@ -73,7 +74,7 @@
                 $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
                 while ($row = mysqli_fetch_array($hubs)) {
                 if(!$row['private_room'])
-                    echo "<a href='chat.php'>{$row['room_name']} </a><br>";// -- {$row['user_count']}
+                    echo "<a href='chat.php'>{$row['room_name']} </a> -- {$row['user_count']}<br>";
                 }
                 
             ?>
