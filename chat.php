@@ -41,9 +41,10 @@
 <html>
   <head>
     <title>Chat room</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy|Acme|Righteous|Pacifico|Courgette">
     <style>
       body{
-        background-image: url("chapp_bg3.jpg");
+        background-image: url("chat_bg.jpg");
         background-repeat: no-repeat; 
         background-size: cover; 
         background-attachment: fixed;
@@ -70,11 +71,12 @@
 
       #chat-content {
         width: 50%;
-        height: 80%;
+        height: 70%;
         margin: auto;
+        border-radius:25px;
         padding: 5px;
         overflow-y: scroll;
-        border-style: solid;
+        border-style: solid #3b14a7;
         background-color: rgb(0, 0, 10);
         background-color: rgba(0, 0, 10, 0.7);
       }
@@ -86,10 +88,37 @@
         column-gap: 5px;
       }
 
+      #input-text{
+        width: 200px;
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 25px;
+        margin-top:20px;
+      }
+
+      #submit-button{
+        background: linear-gradient(to right, #96d3ff, #ac66cc, #3b14a7);
+        font-size: 25px;
+        margin-top:20px;
+        margin-left:15px;
+        font-family: "Acme";
+        color: #14063a;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 25px;
+      }
       #exit-button {
         margin: auto;
         display: flex;
         justify-content: center;
+        background: linear-gradient(to right, #96d3ff, #ac66cc, #96d3ff);
+        font-size: 25px;
+        font-family: "Righteous";
+        margin-top:50px;
+        color: #14063a;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 25px;
       }
 
       #uname {
@@ -98,12 +127,15 @@
       }
 
       #topic {
-        font-size: x-large;
+        font-family: "Rigteous";
+        font-size: 30px;
+        margin-top: 10px;
         padding: 0px;
       }
 
       #code {
-        font-size: small;
+        font-family: "Acme";
+        font-size: 15px;
       }
     </style>
   </head>
