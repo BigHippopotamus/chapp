@@ -76,9 +76,9 @@
                 
                 $hubs = mysqli_query($conn, "SELECT * FROM chathubs");
                 while ($row = mysqli_fetch_array($hubs)) {
-                $_SESSION['room']=$row['room_code'];
-                if(!$row['private_room'])
-                    echo "<a href='chat.php'> {$row['room_name']}</a><br>";}
+                if(!$row['private_room']){
+                    $_SESSION['room']=$row['room_code'];
+                    echo "<a href='chat.php'> {$row['room_name']}--{$row['user_count']}</a><br>";}}
             ?>
         </div>
         
