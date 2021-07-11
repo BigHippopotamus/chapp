@@ -58,7 +58,8 @@
                 echo "invalid chat-code ";
         }
     ?>
-<html>    
+<html> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy|Acme|Righteous|Pacifico|Courgette">   
     <style>
       body{
         background-image: url("chapp_bg3.jpg");
@@ -66,6 +67,24 @@
         background-attachment: fixed;
         color: white;;
         }
+        .sub{
+                margin-top: 15%;
+                border: none;
+                padding: 10px;
+                color: #14063a;
+                font-family: "Acme";
+                font-size: 17px;
+                background: #eaeaff;
+                border-radius: 25px;
+                width: wrap;
+            }
+        .title{
+                color: #ffff;
+                font-family: "Courgette";
+                font-size: 30px;
+                margin-top: 0%;
+                text-align: center;
+            }  
     </style>
 
     <body>
@@ -82,17 +101,17 @@
             ?>
         </div>
         
-        <div style="float: right; margin-right:20%; margin-top:10%">
+        <div style="float: right; margin-right:20%; margin-top:5%">
         
             <h1> Create new chat</h1>
             <form method="POST", action="">
                 enter chat name
-                <input type="text" name="room_name" ><br>
-                <label> <input type="checkbox"  name="private_room"> private chat</label><br>            
-                <input type="submit" name="newchat" value="create chatroom"><br>
+                <input type="text" name="room_name" class="sub"><br>
+                <label> <input type="checkbox"  name="private_room" class="sub"> private chat</label><br>            
+                <input type="submit" name="newchat" class="sub" value="create chatroom"><br>
                 <h1> Join existing chat</h1>
-                <input type="text" name="join_room" ><br>
-                <input type="submit" name="joinchat" value="join chatroom"><br>
+                <input type="text" name="join_room" class="sub" ><br>
+                <input type="submit" name="joinchat" class="sub" value="join chatroom"><br>
             </form>
 
         </div>
