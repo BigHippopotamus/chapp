@@ -1,7 +1,6 @@
 <?php
 session_start();
 include("config.php");
-//include("loginsignincheck.php");
 
 $conn = mysqli_connect($server, $user, $pass);
 ?>
