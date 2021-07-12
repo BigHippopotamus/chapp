@@ -134,9 +134,9 @@
         
             <h1> Create new chat</h1>
             <form method="POST", action="">
-                <h4 class txt style="background-color: rgba(255, 255, 255, 0.5);">Enter Chat Name:</h4>
+                <h4 class txt style="color: white;">Enter Chat Name:</h4>
                 <input type="text" name="room_name" class="input"><br><br>
-                <label> <input type="checkbox" class="txt" name="private_room" class="sub"> <span style="background-color: rgba(255, 255, 255, 0.5);">private chat</span></label><br><br>          
+                <label> <input type="checkbox" class="txt" name="private_room" class="sub"> <span style="color: white;">private chat</span></label><br><br>          
                 <input type="submit" name="newchat" class="sub" value="Create Chatroom"><br>
                 <h1>.</h1>
                 <h1> Join existing chat</h1>
