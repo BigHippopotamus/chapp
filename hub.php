@@ -111,7 +111,7 @@
             color: #eaeaff;
             font-size: 20px;
             margin-left: 30px;
-            padding: 10px;
+            padding: 2px;
 
         }
     </style>
