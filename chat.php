@@ -122,20 +122,21 @@
       }
 
       #uname {
-        color: darkviolet;
+        color: violet;
         font-weight: bold;
       }
 
       #topic {
         font-family: "Rigteous";
         font-size: 30px;
-        margin-top: 10px;
+        margin-top: 15px;
         padding: 0px;
       }
 
       #code {
-        font-family: "Acme";
+        font-family: "Rigteous";
         font-size: 15px;
+        padding: 15px;
       }
     </style>
   </head>
@@ -157,8 +158,8 @@
         </form>
       </div>
 
-      <div id="exit-button">
-        <button type="button" onclick="location.href = 'exitchat.php';">Leave Chat</button>
+      <div >
+        <button type="button" id="exit-button" onclick="location.href = 'exitchat.php';">Leave Chat</button>
       </div>
     </div>
 
