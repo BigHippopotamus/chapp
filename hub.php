@@ -40,9 +40,9 @@
                 
             }
             else if(!$i)
-                echo "chat-room name exists, enter another";
+                echo "<p style='color: white;'>Chat room name exists, enter another</p>";
             else
-                echo "invalid chat-name";
+                echo "<p style='color: white;'>Invalid chatname</p>";
         }
         //join private chat
         if($_POST["joinchat"]??""){
